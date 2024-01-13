@@ -9,7 +9,7 @@ W = 500
 mid_h = H // 2
 mid_w = W // 2
 screen = pygame.display.set_mode((W, H))
-pygame.display.set_caption("Mario spritesheets")
+pygame.display.set_caption("Mario sprite-sheets")
 
 # colors
 BG = (50, 50, 50)
@@ -17,13 +17,13 @@ BLACK = (0, 0, 0)
 SPRITE_BG = (146, 144, 255)
 
 # sprites
-sprite_sheet_img = pygame.image.load("mario_spritesheet.png").convert_alpha()
+sprite_sheet_img = pygame.image.load("mario_sprite-sheet.png").convert_alpha()
 sprite_sheet = spritesheet.SpriteSheet(sprite_sheet_img)
 size = 16
 
 # animation
 animation_list = []
-animation_steps = [4, 1]
+animation_steps = [4, 1, 4, 1]
 action = 0
 last_update = pygame.time.get_ticks()
 animation_cooldown = 100
@@ -45,11 +45,17 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_DOWN and action > 0:
-                action -= 1
+            if event.key == pygame.K_RIGHT and action > 0:
+                action = 0
                 frame = 0
-            if event.key == pygame.K_UP and action < len(animation_list) - 1:
-                action += 1
+            if event.key == pygame.K_UP and action != 2:
+                action = 1
+                frame = 0
+            if event.key == pygame.K_LEFT:
+                action = 2
+                frame = 0
+            if event.key == pygame.K_UP and action == 2:
+                action = 3
                 frame = 0
 
     # update screen
