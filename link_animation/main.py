@@ -46,13 +46,11 @@ while running:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_DOWN:
                 action = 0
-                frame = 0
             if event.key == pygame.K_RIGHT:
                 action = 1
-                frame = 0
             if event.key == pygame.K_LEFT:
                 action = 2
-                frame = 0
+            frame = 0
 
     # update screen
     screen.fill(BG)
